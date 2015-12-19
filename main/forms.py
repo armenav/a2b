@@ -22,22 +22,18 @@ import pdb
 class RidesearchForm(ModelForm):
 
 
-	PASSANGER_NUMBER_CHOICES = (
-            (1, '1 passanger'),
-            (2, '2 passanger'),
-            (3, '3 passanger'),
-        )
+	
         
-	fromwhere   = AutoCompleteField('city', label=_('Source'), required=True, help_text=None)
-	towhere 	= forms.ModelChoiceField(queryset=City.objects.all(), to_field_name="name_en")
-	passanger_number = forms.ChoiceField(label=_("How many?"), widget=forms.Select(attrs={'id': "id_passanger_number", 'class': 'passnumClass'}), choices=PASSANGER_NUMBER_CHOICES)
+	fromwhere   = forms.ModelChoiceField(queryset=City.objects.all(), to_field_name="name_hy", widget=forms.Select(attrs={"onChange":'sourcefilter(this)'}))
+	towhere 	= forms.ModelChoiceField(queryset=City.objects.all(), to_field_name="name_hy", widget=forms.Select(attrs={"onChange":'destfilter(this)'}))
+	
 #	payment_method = forms.ChoiceField(label=_("Payment Method"), choices=PAYMENT_CHOICES, widget=forms.RadioSelect(), initial='1')
 	class Meta:
  		model = Ridesearch
-		fields = ['fromwhere', 'towhere', 'leavedate', 'passanger_number']
+		fields = ['fromwhere', 'towhere', 'leavedate']
 
 		widgets = {
-            		'leavedate': DateTimeWidget(attrs={'id':"id_source"}, options={'startDate':'+1d'}),
+            		'leavedate': DateWidget(attrs={'id':"id_source"}, options={'startDate':'+1d'}),
        	}
 
 	def clean_start_date(self):

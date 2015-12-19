@@ -94,17 +94,17 @@ class Ridesearch(models.Model):
     fromwhere = models.CharField(_("From"), max_length=100, blank=False)
     towhere = models.CharField(_("To"), max_length=100, blank=False)
     leavedate = models.DateTimeField(blank=True)
-    passanger_number = models.CharField(_("How many?"), max_length=3)
+    #passanger_number = models.CharField(_("How many?"), max_length=3)
 
 class City(models.Model):
     name_en = models.CharField(max_length=100)
     name_hy = models.CharField(max_length=100)
     class Meta:
-        verbose_name = "Street"
-        verbose_name_plural = "Streets"
+        verbose_name = "City"
+        verbose_name_plural = "Cities"
 
     def __unicode__(self):
-            return self.name_en
+            return self.name_hy
 
 
 class Driver(Page, RichText):

@@ -76,11 +76,7 @@
                                         {% render_field field class="input-large input-contrast" placeholder=field.label required='required' %}
                                     </label>
                                 {% endfor %}
-                                <button
-                                        id="submit_location"
-                                        class="searchbar__submit btn btn-lg btn-primary">
-                                    Փնտրել
-                                </button>
+                                
                             </div>
                     </form>
                 </div>
@@ -111,7 +107,7 @@
                     </th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="fbody">
                 {% for driver in drivers %}
                     {% for ride in driver.rides.all %}
                         <tr>
