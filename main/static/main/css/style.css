@@ -37,8 +37,12 @@ audio:not([controls]) {
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
+@font-face {
+    font-family: "Arian AMU";
+    src: url("../fonts/arnamu.ttf")
+}
 html {
-  font-family: sans-serif;
+  font-family: "Arian AMU";
   /* 1 */
   -ms-text-size-adjust: 100%;
   /* 2 */
@@ -285,8 +289,10 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+
+
 body {
-  font-family: 'Ubuntu', Verdana, sans-serif;
+  font-family: "Arian AMU", "Open Sans", Arial, Verdana, sans-serif;
   color: #5D6D77; }
 
 a {
@@ -1900,6 +1906,7 @@ img#driver-img{
 .alert{
   padding: 5px;
   margin-bottom: 0;
+  margin-top: 20px;
 }
 .alert-dismissable, .alert-dismissible {
 padding-right: 35px;
@@ -2035,4 +2042,44 @@ label, .helptext{
 
 .btn{
   padding: 6px 12px;
+}
+
+#lang_ddown{
+  padding: 6px 0;
+}
+
+#lang_form{
+  margin: 8px;
+}
+
+#additional{
+  margin: 25px 0;
+}
+
+#social_span{
+  margin-left: 20px;
+}
+
+#ride_table{
+  margin-top: 50px;
+}
+
+#ride_table tr{
+  color: #fff;
+}
+
+#login_btn{
+  margin-bottom: 20px;
+}
+
+#id_ok{
+  margin: 6px 2px;
+}
+
+.align_top{
+  vertical-align: top;
+}
+
+.align_bottom{
+  vertical-align: bottom;
 }

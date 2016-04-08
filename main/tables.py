@@ -13,33 +13,36 @@ class DriverColumn(tables.Column):
 
 
 class RideTable(tables.Table):
-    leavedate = tables.Column(verbose_name="Ամսաթիվ")
-    starttime = tables.Column(verbose_name="Ժամ")
-    price = tables.Column(verbose_name="Արժեքը")
-    fromwhere = tables.Column(verbose_name="Որտեղից")
-    towhere = tables.Column(verbose_name="Ուր")
-
+    leavedate = tables.Column(verbose_name=_("Date"))
+    starttime = tables.Column(verbose_name=_("Time"))
+    price = tables.Column(verbose_name=_("Price"))
+    fromwhere = tables.Column(verbose_name=_("From where"))
+    towhere = tables.Column(verbose_name=_("To where"))
+    details = tables.Column(verbose_name=_("Details"), orderable=False, empty_values=())
 
 
     def render_leavedate(self, value, record):
         return record.leavedate.strftime('%d - %m - %Y')
 
+    def render_details(self, value, record):
+        return mark_safe('<a class="" href="%s">%s</a>' % ("/ride/"+record.uuid, _("Details")))
+
     class Meta:
         model = Ride
-        attrs = {"class": "table table-hover"}
+        attrs = {"class": "table table-bordered"}
         exclude = ("id", "endtime", "driver", "passenger_number", "uuid")
-        empty_text = "Ներկայումս մենք չունենք Ձեր ուղղությամբ երթուղիներ, այցելեք մեզ ավելի ուշ։"
+        empty_text = _("Currently there are no rides matching your search, check back later, please.")#
 
 
 
 class DriverRideTable(tables.Table):
-    leavedate = tables.Column(verbose_name="Ամսաթիվ")
-    starttime = tables.Column(verbose_name="Ժամ")
-    price = tables.Column(verbose_name="Արժեքը")
-    fromwhere = tables.Column(verbose_name="Որտեղից")
-    towhere = tables.Column(verbose_name="Ուր")
-    passenger_number = tables.Column("Ազատ տեղեր")
-    delete = tables.Column(verbose_name="Ջնջե՞լ", orderable=False, empty_values=())
+    leavedate = tables.Column(verbose_name=_("Date"))
+    starttime = tables.Column(verbose_name=_("Time"))
+    price = tables.Column(verbose_name=_("Price"))
+    fromwhere = tables.Column(verbose_name=_("From where"))
+    towhere = tables.Column(verbose_name=_("To where"))
+    passenger_number = tables.Column(verbose_name=_("Free seats"))
+    delete = tables.Column(verbose_name=_("Delete"), orderable=False, empty_values=())
 
 
 
@@ -52,6 +55,6 @@ class DriverRideTable(tables.Table):
 
     class Meta:
         model = Ride
-        attrs = {"class": "table table-hover"}
+        attrs = {"class": "table table-bordered", "id": "ride_table"}
         exclude = ("id", "endtime", "driver", "uuid")
-        empty_text = "Ներկայումս մենք չունենք Ձեր ուղղությամբ երթուղիներ, այցելեք մեզ ավելի ուշ։"
+        empty_text = _("You haven't added any routes yet, go ahead and add the first one!")
